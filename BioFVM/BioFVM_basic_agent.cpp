@@ -318,29 +318,14 @@ void Basic_Agent::simulate_secretion_and_uptake( Microenvironment* pS, double dt
 		total_extracellular_substrate_change.assign( total_extracellular_substrate_change.size() , 1.0 ); // 1
         //std::cout << "TEEEEEEEEST" << std::endl;
 		total_extracellular_substrate_change -= cell_source_sink_solver_temp2; // 1-c2
-        if (PhysiCell::PhysiCell_globals.current_time > 49.99)
-            std::cout << __FUNCTION__ <<" 1)======  ID=" << this->ID << ": total change " << total_extracellular_substrate_change  << std::endl;
 		total_extracellular_substrate_change *= (*pS)(current_voxel_index); // (1-c2)*rho 
-        if (PhysiCell::PhysiCell_globals.current_time > 49.99)
-            std::cout << __FUNCTION__ <<" 2)======  ID=" << this->ID << ": total change " << total_extracellular_substrate_change  << std::endl;
 		total_extracellular_substrate_change += cell_source_sink_solver_temp1; // (1-c2)*rho+c1 
-        if (PhysiCell::PhysiCell_globals.current_time > 49.99)
-            std::cout << __FUNCTION__ <<" 3)======  ID=" << this->ID << ": total change " << total_extracellular_substrate_change  << std::endl;
 		total_extracellular_substrate_change /= cell_source_sink_solver_temp2; // ((1-c2)*rho+c1)/c2
-        if (PhysiCell::PhysiCell_globals.current_time > 49.99)
-            std::cout << __FUNCTION__ <<" 4)======  ID=" << this->ID << ": total change " << total_extracellular_substrate_change  << std::endl;
 		total_extracellular_substrate_change *= pS->voxels(current_voxel_index).volume; // W*((1-c2)*rho+c1)/c2 
-        if (PhysiCell::PhysiCell_globals.current_time > 49.99)
-            std::cout << __FUNCTION__ <<" 5)======  ID=" << this->ID << ": total change " << total_extracellular_substrate_change  << std::endl;
 
         //std::cout << "Internalized substrate change = ";
 		//std::cout << total_extracellular_substrate_change << std::endl;
 		*internalized_substrates -= total_extracellular_substrate_change; // opposite of net extracellular change 	
-        if (PhysiCell::PhysiCell_globals.current_time > 49.99)
-        {
-            if (this->ID == 0) std::cout << std::endl;
-            std::cout << __FUNCTION__ <<":#1 ID=" << this->ID << ": *internalized_substrates= " << *internalized_substrates << std::endl;
-        }
 	}
 	
 	(*pS)(current_voxel_index) += cell_source_sink_solver_temp1; 
@@ -351,8 +336,6 @@ void Basic_Agent::simulate_secretion_and_uptake( Microenvironment* pS, double dt
 	if( default_microenvironment_options.track_internalized_substrates_in_each_agent == true ) 
 	{
 		*internalized_substrates -= cell_source_sink_solver_temp_export1; 
-        if (PhysiCell::PhysiCell_globals.current_time > 49.99)
-            std::cout << __FUNCTION__ <<":t= "<< PhysiCell::PhysiCell_globals.current_time << " ---  #2 ID=" << this->ID << ": *internalized_substrates= " << *internalized_substrates << std::endl;
 	}
 
 	return; 
