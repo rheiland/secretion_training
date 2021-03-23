@@ -164,7 +164,7 @@
 	</microenvironment_setup>
 	
 	<cell_definitions>
-		<cell_definition name="default" ID="0">
+		<cell_definition name="default" ID="0" visible="false">
 			<phenotype>
 				<cycle code="5" name="live">  
 					<!-- phases are: live --> 
